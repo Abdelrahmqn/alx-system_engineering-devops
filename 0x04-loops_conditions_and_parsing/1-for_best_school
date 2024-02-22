@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 # This script is displaying "Best School" 10 times
 
-bst='Best School'
 j=10
 for ((i=1; i<=j; i++))
 do
-echo $bst
+echo "Best School"
 done
