@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#for listing all files after the char"-"
 
 
 for files in *-*

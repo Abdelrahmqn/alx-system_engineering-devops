@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# this script test if the file is exist or not.
+
 
 school="school"
 if [ -e "$school" ]; then
