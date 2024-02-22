@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#this scripting is for showing how fizzbuzz printed
+
+
+fzbz="FizzBuzz"
+fz="Fizz"
+bz="Buzz"
+
+for ((i = 1; i <= 100; i++)); do
+    if (("$i" % 3 == 0)) && (("$i" % 5 == 0)); then
+        echo "$fzbz"
+    elif (("$i" % 3 == 0)); then
+        echo "$fz"
+    elif (("$i" % 5 == 0)); then
+        echo "$bz"
+    else
+        echo "$i"
+    fi
+done
