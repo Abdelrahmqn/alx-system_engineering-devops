@@ -7,10 +7,10 @@ j=0
 i=1
 while [ "$j" -le 12 ]; do
     echo "Hour: $j"
-    while [ "$i" -le 59 ]; do
+    while [ "$i" -lt 60 ]; do
         echo "$i"
-        ((i++))
+        i=$((i+1))
     done
-    i=1
-    ((j++))
+
+    j=$((j+1))
 done
