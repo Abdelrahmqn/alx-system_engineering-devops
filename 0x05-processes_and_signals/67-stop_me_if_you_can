@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#stop if you can with out kill or ctrl+c
+
+pkill -f "7-highlander"
+

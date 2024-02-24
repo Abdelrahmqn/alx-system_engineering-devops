@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#copy of infinity beyond.
+
+trap "I am invincible!!!" SIGTERM
+inf="To infinity and beyond"
+while ((1)); do
+    echo "$inf"
+    sleep 2
+done
