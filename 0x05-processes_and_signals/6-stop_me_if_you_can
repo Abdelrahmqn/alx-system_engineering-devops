@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#stop if you can with out kill or ctrl+c
+
+pkill -f "4-to_infinity_and_beyond"
