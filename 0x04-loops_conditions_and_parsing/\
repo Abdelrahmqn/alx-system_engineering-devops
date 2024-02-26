@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#this will shows id, user, homedir.
+
+FILE="/etc/passwd"
+while IFS=: read -r username userid homedir
+do
+echo "$username, $userid, $homedir"
+done < $FILE
