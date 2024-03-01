@@ -2,7 +2,6 @@
 #list all ips
 
 ip=$(hostname -I)
-
-for i in "$ip"; do
+for i in $ip; do
 	echo "$i"
 done

@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 #Write a Bash script that pings an IP address passed as an argument.
 
-issues(){
-	echo "Usage: $0 {IP_ADDRESS}"
-}
-
-if [ "$0" -eq 0 ]; then
-	issues
-	exit 1
+IP_AD=${1}
+filename=$(basename "${BASH_SOURCE[0]}")
+if ! [ "$IP_AD" ]; then
+	echo "Usage: ${filename} {IP_ADDRESS}"
+else
+	ping -c 5 "$IP_AD"
 fi
-IP_ADDRESS=$1
-ping -c 5 "$IP_ADDRESS"
