@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# must listens on port 98 on 127.0.0.2
+
+nc -l localhost 98
