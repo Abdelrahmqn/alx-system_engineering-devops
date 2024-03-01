@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#change local to .2
+#change facebook to 8.8.8.8
+
+cp /etc/hosts ~/hosts.no
+
+echo "127.0.0.2 localhost" >> ~/hosts.no
+echo "8.8.8.8 facebook.com" >> ~/hosts.no
+cp -f ~/hosts.no /etc/hosts
