@@ -1,4 +1,4 @@
 exec { 'pkill':
-  path    => ['/usr/bin', '/usr/sbin', '/bin']
-  command => 'pkill -9 -f killmenow',
+  unless  => process { name => 'killmenow' },
+  command => '/usr/bin/pkill -f killmenow',
 }
