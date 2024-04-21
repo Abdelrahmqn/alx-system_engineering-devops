@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # i use server
 
 ssh -i ~/.ssh/school ubuntu@54.173.14.7
