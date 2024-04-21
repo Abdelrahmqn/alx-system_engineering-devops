@@ -1,4 +1,5 @@
 # set client config f
+
 include stdlib
 file_line { 'Delare identity file':
   ensure => present,
