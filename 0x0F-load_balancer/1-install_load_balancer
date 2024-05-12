@@ -1,26 +1,27 @@
 #!/usr/bin/env bash
-# configure Nginx
-apt-get -y update
-apt-get -y upgrade
+# installing haproxy and create a traffic for you servers
+# Distribute requests using a reoundrobin algorithm
+# is HAproxy managed via an init script
 
-apt-get -y install software-properties-common
-add-apt-repository -y ppa:vbernat/haproxy-2.5
-apt-get -y update
+sudo apt-get -y update
+sudo apt-get -y install haproxy
 
-apt-get -y install haproxy
-cp -a /etc/haproxy/haproxy.cfg{,.orig}
-echo "$balancer" >> /etc/haproxy/haproxy.cfg
-service haproxy restart
-
-
-balancer="\
+HAproxy="\
 frontend haproxy_balancer
     mode http
     bind *:80
     default_backend webservers
-    
+
 backend webservers
     balance roundrobin
     server 26071-web-01 44.210.150.159:80 check
     server 26071-web-02 35.173.47.15:80 check
 "
+
+sudo sh -c 'echo $HAproxy" > etc/haproxy/haproxy.cfg'
+
+sudo chown root:haproxy /etc/haproxy/haproxy.cfg
+sudo chmod 640 /etc/haproxy/haproxy.cfg
+
+sudo systemctl enable haproxy
+sudo systemctl start haproxy
