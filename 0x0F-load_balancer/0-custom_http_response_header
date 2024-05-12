@@ -1,40 +1,30 @@
 #!/usr/bin/env bash
-#install nginx and HTTP header must X-Servved-By, host name o server nginx is running on.
-
+# install nginx, add custom header, youtube
 hostname=$(hostname)
-# install nginx
 sudo apt-get -y update
 sudo apt-get -y install nginx
-
-# Nginx HTTP allow
 sudo ufw allow 'Nginx HTTP'
+sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
 
-# giving a permissions
-sudo chown ubuntu /usr/share/nginx/html/index.html
-sudo chown ubuntu /var/www/html/custom_404.html
-sudo chown ubuntu /etc/nginx/sites-available/default
+sudo sh -c 'printf "Ceci n'\''est pas une page\n" > /var/www/html/404.html'
 
-sudo chmod u+w /usr/share/nginx/html/index.html
-sudo chmod u+w /var/www/html/custom_404.html
-sudo chmod u+w /etc/nginx/sites-available/default
+sudo sh -c 'echo "server {
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
 
-# messages
-echo "Hello World!" > /usr/share/nginx/html/index.html
-echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
+    root /var/www/html;
+    index index.html index.htm;
+	add_header X-Served-By $hostname;
+    server_name localhost;
+    error_page 404 /404.html;
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
 
-# creating an html dir
-mkdir -p /var/www/html
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
 
-# redirecting
-sudo sed -i '21i\     location /redirect_me {\n   return 301 https://www.youtube.com;\n   }' /etc/nginx/sites-available/default
-
-# error 404
-sudo sed -i '25i\       error_page 404 /404.html;' /etc/nginx/sites-available/default
-
-# "/etc/nginx/sites-available/default":
-# This file defines how Nginx handles incoming requests
-echo "server {" >> /etc/nginx/sites-available/default
-echo "    add_header X-Served-By $hostname;" >> /etc/nginx/sites-available/default
-echo "}" >> /etc/nginx/sites-available/default
-# restart
+}" > /etc/nginx/sites-available/default'
 sudo service nginx start
+sudo nginx -s reload
