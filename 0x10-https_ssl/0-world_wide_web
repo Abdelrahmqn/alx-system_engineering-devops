@@ -1,0 +1,19 @@
+#!/bin/bash
+# Displaying SUB_DOMAIN with the record type pointing to the Destination...
+
+sub_domain="$2"
+domain="$1"
+
+if [ $# -eq 2 ]; then
+	ip_add=$(dig $sub_domain.$domain | awk '/ANSWER SECTION/ {getline; print $5}')
+	rec_type=$(dig $sub_domain.$domain | awk '/ANSWER SECTION/ {getline; print $4}')
+	echo "The subdomain $sub_domain is a $rec_type record and points to $ip_add"
+
+elif [ $# -eq 1 ]; then
+	declare subss=('www' 'lb-01' 'web-01' 'web-02')
+	for s in "${subss[@]}"; do
+		ip_add=$(dig "$s.$domain" | awk '/ANSWER SECTION/ {getline; print $5}')
+	        rec_type=$(dig "$s.$domain" | awk '/ANSWER SECTION/ {getline; print $4}')
+		echo "The subdomain $s is a $rec_type record and points to $ip_add"
+	done
+fi
