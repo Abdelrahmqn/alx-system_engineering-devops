@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Displaying SUB_DOMAIN with the record type pointing to the Destination...
 
 sub_domain="$2"
