@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 # + print that the server isn't running ...
-sudo sed -i 's/8080/80' /etc/nginx/sites-available/default
-
-if systemctl is-active --quiet nginx; then
-    echo "Nginx is running."
-else
-    echo "Nginx is not running."
-fi
+sudo sed -i 's/8080/80/g' /etc/nginx/sites-available/default
+sudo service nginx restart
+kill -9 "$(cat /var/run/nginx.pid)"
