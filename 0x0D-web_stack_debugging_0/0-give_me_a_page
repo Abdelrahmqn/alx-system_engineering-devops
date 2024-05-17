@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 # magic lines of debugging ...
-sudo docker exec -it d368839cac9c service apache restart
+sudo docker exec -it d368839cac9c service apache2 restart
+curl 0:8080
 
