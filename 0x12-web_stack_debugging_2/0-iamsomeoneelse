@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# who are you ??
+firstarg="$1"
+sudo -u "$firstarg" whoami
