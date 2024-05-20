@@ -41,4 +41,6 @@ defaults
 	errorfile 504 /etc/haproxy/errors/504.http
 
 backend http_back
-    server server1 192.168.1.10:80 check
+    server lb-01 54.157.146.96:80 check
+
+
