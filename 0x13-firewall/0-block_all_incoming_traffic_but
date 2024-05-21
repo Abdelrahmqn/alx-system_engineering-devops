@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+sudo ufw enable
+sudo ufw default allow incoming
+sudo ufw default allow outgoing
+
+sudo ufw deny 443/tcp
+sudo ufw deny 22/tcp
+sudo ufw deny 80/tcp
+
+sudo ufw status
+sudo ufw logging on
+sudo ufw reload
+
