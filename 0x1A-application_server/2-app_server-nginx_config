@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # configure nginx to serve /airbnb_onepage
 
-sudo apt-get update
-sudo apt-get install -y nginx
 
 printf "server {
     listen 80 default_server;
@@ -17,7 +15,7 @@ printf "server {
     }
 
     location /airbnb-onepage {
-        proxy_pass http://localhost:5000;
+        proxy_pass http://localhost:5000/airbnb-onepage;
     }
 
     location /redirect_me {
